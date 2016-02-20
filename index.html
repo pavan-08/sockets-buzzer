@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <img src="IB.jpg" id="bg" />
+    <div>
+        <h1>IDIOT BOX</h1>
+        <input type="number" placeholder="Team number" name="team" required/>
+        <input type="submit" name="submit" value="Submit"/>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('input[type = "submit"]').click(function(){
+                var obj = document.querySelector('input[name="team"]');
+                if(obj.checkValidity() == true) {
+                    window.name = "Team_" + $('input[name="team"]').val();
+                    window.location.assign('buzzer.php');
+                } else {
+                    alert("Enter team number");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

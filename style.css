@@ -1,0 +1,89 @@
+body{
+    background: black;
+    margin: 0;
+    text-align: center;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+    color: white;
+}
+img{
+    width: 100%;
+    margin: 40% 0 0 0;
+    height: auto;
+}
+#bg{
+    margin:0;
+    left:0;
+    top:0;
+    object-fit: none; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+    position: fixed;
+}
+h1{
+    font-size: 2.8em;
+}
+
+table{
+    font-size: 2.0em;
+    text-align: center;
+    border: 1px solid white;
+    width: 60%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+#tab{
+    display: inline-block;
+    margin: auto;
+    min-width: 20%;
+    margin-top: 10%;
+    max-height: 60%;
+    overflow-y: auto;
+}
+
+#reset{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+}
+#reset:hover{
+    background-color: white;
+    color: black;
+}
+
+@media screen and (max-width: 550px){
+    #tab{
+        min-width: 80%;
+    }
+}
+
+div{
+    width: 88%;
+    background-color: rgba(0,0,0,0.7);
+    padding: 2%;
+    border-radius: 5px;
+    color: white;
+    margin-left: 4%;
+    margin-top: 40%;
+}
+div input{
+
+    margin: 10px 0;
+    padding: 5px 0;
+    width: 96%;
+    border-radius: 5px;
+}
+div input[type="submit"]{
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+}
+div input[type="submit"]:hover{
+    background-color: white;
+    color: black;
+}
