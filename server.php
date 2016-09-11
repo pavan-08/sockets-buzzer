@@ -1,10 +1,11 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(0);
 set_time_limit(0);
-$host = "192.168.1.104";
+$host = "192.168.43.16";
 $port = 8081;
 $null = NULL;
 $leaderboard = null;
+$soundboard = null;
 $socket = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create
 socket\n");
 $result = socket_bind($socket, $host, $port) or die("Could not bind to
@@ -56,6 +57,16 @@ while(1)
 				}
 			}
 
+			if(isset($tst_msg->type) && $tst_msg->type == "soundboard"){
+				if($soundboard == null) {
+					$soundboard = $changed_socket;
+					echo "Soundboard connected!\n";
+				} else{
+					socket_close($changed_socket);
+					echo "bogus soundboard closed\n";
+				}
+			}
+
 			if($user_message != null && $user_message == "hello server"){
 				if(in_array($user_name,$users)){
 					$reply = mask(json_encode(array("name"=>$user_name, "message"=>"Team registered already")));
@@ -65,7 +76,7 @@ while(1)
 					$users[] = $user_name;
 				}
 			}
-			if($user_message != null && $user_name != null && $leaderboard!=null && $tst_msg->winner == null) {
+			if($user_message != null && $user_name != null && $leaderboard!=null && $soundboard != null && $tst_msg->winner == null) {
 				if($user_message == "hello server"){
 
 				} else {
@@ -76,11 +87,12 @@ while(1)
 			}
 			if($tst_msg->winner != null){
 				echo $tst_msg->name. " pressed first\n";
-				/*$resp = mask(json_encode(array('name'=>$tst_msg->name, 'win'=> true)));
-				foreach($clients as $cli) {
+				$resp = mask(json_encode(array('name'=>$tst_msg->name, 'win'=> true)));
+				/*foreach($clients as $cli) {
 					if($cli != $leaderboard)
 						@socket_write($cli, $resp, 1024);
 				}*/
+				@socket_write($soundboard, $resp, 1024);
 			}
 			break 2; //exist this loop
 		}
@@ -93,6 +105,10 @@ while(1)
 			if($changed_socket == $leaderboard){
 				echo "leaderboard disconnected!!\n";
 				$leaderboard = null;
+			}
+			if($changed_socket == $soundboard){
+				echo "soundboard disconnected!!\n";
+				$soundboard = null;
 			}
 			unset($clients[$found_socket]);
 			echo "$ip disconnected\n";

@@ -13,7 +13,7 @@
                 console.log("WebSocket is supported by your Browser!");
 
                 // Let us open a web socket
-                var ws = new WebSocket("ws://192.168.1.104:8081/socket_chat/server.php");
+                var ws = new WebSocket("ws://192.168.43.16:8081/socket_chat/server.php");
 
                 ws.onopen = function () {
                     // Web Socket is connected, send data using send()
@@ -37,10 +37,10 @@
                     var received_msg = JSON.parse(evt.data);
                     console.log("Message is received...");
                     console.log(received_msg);
-                    /*if( received_msg.win != undefined && received_msg.win === true && received_msg.name == window.name){
+                    if( received_msg.win != undefined && received_msg.win === true && received_msg.name == window.name){
                         var audio = new Audio('buzz.mp3');
                         audio.play();
-                    }*/
+                    }
                     if(received_msg.message != null && received_msg.message == "Team registered already"){
                         alert(received_msg.message);
                         window.location.assign('index.html');
