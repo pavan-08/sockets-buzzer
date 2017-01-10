@@ -13,7 +13,7 @@
                 console.log("WebSocket is supported by your Browser!");
 
                 // Let us open a web socket
-                var ws = new WebSocket("ws://192.168.43.16:8081/socket_chat/server.php");
+                var ws = new WebSocket("ws://"+window.location.hostname+":8081/buzzer/server.php");
 
                 ws.onopen = function () {
                     // Web Socket is connected, send data using send()

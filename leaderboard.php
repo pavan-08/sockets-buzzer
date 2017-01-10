@@ -36,7 +36,7 @@
                 }
                 Notification.requestPermission();
                 if("WebSocket" in window){
-                    var ws = new WebSocket("ws://192.168.43.16:8081/socket_chat/server.php");
+                    var ws = new WebSocket("ws://"+window.location.hostname+":8081/socket_chat/server.php");
                     ws.onopen = function () {
                         var cred = {
                             type: "leaderboard"

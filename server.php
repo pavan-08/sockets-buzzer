@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 set_time_limit(0);
-$host = "192.168.43.16";
+$host = "192.168.1.106";
 $port = 8081;
 $null = NULL;
 $leaderboard = null;
